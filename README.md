@@ -31,6 +31,15 @@ root@yue:/usr/local/include/osqp/codegen_files/src
 /usr/local/share/osqp/codegen_files/inc/private/auxil.h
 
 
+sudo apt-get -y install wget libtool
+   35  wget https://github.com/Kitware/CMake/releases/download/v3.20.2/cmake-3.20.2.tar.gz
+   36  tar -zxvf cmake-3.20.2.tar.gz
+   37  ls
+   38  rm -rf cmake-3.20.2.tar.gz 
+   39  cd cmake-3.20.2/
+   40  ./bootstrap
+   41  make -j8
+   42  sudo make install
 
 
 
