@@ -1,3 +1,39 @@
+sudo docker run -d \
+    --network host \
+    --cap-add=IPC_LOCK --cap-add=sys_nice \
+    -v ~/A1-QP-MPC-Controller/src/a1_cpp:/root/A1_ctrl_ws/src/A1_Ctrl \
+    --device /dev/input \
+    --name a1_cpp_ctrl_docker \
+    a1_cpp_ctrl_image
+    
+    
+    
+    
+    
+    usr/local/share
+    
+    /usr/local/include/OsqpEigen/Solver.tpp:10:10: fatal error: auxil.h: No such file or directory
+ #include <auxil.h>
+
+
+ #include <usr/local/share/osqp/codegen_files/src/auxil.h>
+ 
+ 
+ usr/local/share/osqp/codegen_files/src/auxil.h
+
+root@yue:/usr/local/include/osqp/codegen_files/src
+
+#include <codegen_files/src/auxil.h>
+#include <codegen_files/src/scaling.h>
+
+
+/usr/local/share/osqp/codegen_files/inc/private/auxil.h
+
+
+
+
+
+
 # A1-QP-MPC-Controller
 
 ## Update 2022-12-05
