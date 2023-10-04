@@ -7,7 +7,8 @@ sudo docker run -d \
     a1_cpp_ctrl_image
     
     
-    
+    sudo apt-get install vim libatlas-base-dev libeigen3-dev libgoogle-glog-dev libsuitesparse-dev python3-catkin-tools python3-osrf-pycommon python3-matplotlib gfortran autoconf git coinor-libipopt-dev curl libopenmpi-dev apt-utils software-properties-common build-essential libssl-dev
+
     
     
     usr/local/share
