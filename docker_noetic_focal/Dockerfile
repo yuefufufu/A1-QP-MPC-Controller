@@ -38,10 +38,21 @@ RUN curl https://bootstrap.pypa.io/pip/get-pip.py -o get-pip.py
 RUN python get-pip.py
 RUN rm get-pip.py
 RUN pip --version
-# RUN pip install pybullet
-# RUN pip install tensorflow
-# RUN pip install numpy
-# RUN pip install scipy
+RUN pip install pybullet
+RUN pip install tensorflow
+RUN pip install numpy
+RUN pip install scipy
+
+# install cmake 3.20 
+WORKDIR /tmp 
+RUN apt-get -y install wget libtool
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.20.2/cmake-3.20.2.tar.gz
+RUN tar -zxvf cmake-3.20.2.tar.gz
+RUN ls
+WORKDIR /tmp/cmake-3.20.2
+RUN ./bootstrap
+RUN make -j8
+RUN make install
 
 # change timezone (this is very important otherwise many ROS topic time will be strange)
 ENV TZ=America/New_York
@@ -74,7 +85,8 @@ RUN make install
 
 # lcm dependencies, notice ContactImplicitMPC.jl needs 2.68.3, we try 2.64.6 first
 RUN apt-cache madison libglib2.0-dev
-RUN apt-get install -y libglib2.0-0=2.64.6-1~ubuntu20.04.4 libglib2.0-dev=2.64.6-1~ubuntu20.04.4
+#RUN apt-get install -y libglib2.0-0=2.24.0-0ubuntu4
+RUN apt-get install -y libglib2.0-0=2.64.6-1~ubuntu20.04.6 libglib2.0-dev=2.64.6-1~ubuntu20.04.6
 # WORKDIR /tmp
 # RUN wget http://archive.ubuntu.com/ubuntu/pool/main/g/glib2.0/libglib2.0-0_2.68.4-1ubuntu1_amd64.deb
 # RUN dpkg -i libglib2.0-0_2.68.4-1ubuntu1_amd64.deb
@@ -264,15 +276,15 @@ RUN echo "export ROS_MASTER_URI=http://localhost:11311;export ROS_IP=localhost;e
 RUN echo "export PATH=/usr/local/julia/bin:${PATH}" >> ~/.bashrc
 
 # install cmake 3.20 
-WORKDIR /tmp 
-RUN apt-get -y install wget libtool
-RUN wget https://github.com/Kitware/CMake/releases/download/v3.20.2/cmake-3.20.2.tar.gz
-RUN tar -zxvf cmake-3.20.2.tar.gz
-RUN ls
-WORKDIR /tmp/cmake-3.20.2
-RUN ./bootstrap
-RUN make -j8
-RUN make install
+#WORKDIR /tmp 
+#RUN apt-get -y install wget libtool
+#RUN wget https://github.com/Kitware/CMake/releases/download/v3.20.2/cmake-3.20.2.tar.gz
+#RUN tar -zxvf cmake-3.20.2.tar.gz
+#RUN ls
+#WORKDIR /tmp/cmake-3.20.2
+#RUN ./bootstrap
+#RUN make -j8
+#RUN make install
 
 
 # install glib 2.68
@@ -328,5 +340,3 @@ RUN make && make install
 
 
 # ssh root@localhost -p2235
-
-
